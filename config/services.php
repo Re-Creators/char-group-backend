@@ -32,12 +32,12 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://authentication-app.test/api/auth/github/callback',
+        'redirect' => env('GITHUB_REDIRECT_URL'),
     ],
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://authentication-app.test/api/auth/facebook/callback',
+        'redirect' => env('FACEBOOK_REDIRECT_URL'),
     ],
 
 ];
