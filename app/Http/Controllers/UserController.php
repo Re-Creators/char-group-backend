@@ -15,24 +15,8 @@ class UserController extends Controller
     public function update(Request $request, $id) {
         // Get current user
         $user = $request->user();
-
-        // get and check avatar image
-        $file = $request->file('avatar');
-        $avatar = $user->avatar;
-
-        if($file) {
-            //Validate Image
-            $request->validate([
-                'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ]);
-
-            $name = '/images/' . uniqid() . '.' . $file->extension();
-            $file->storePubliclyAs('public', $name);
-            $avatar = url($name);
-        }
         
         $updated_field = [
-            'avatar' => $avatar,
             'bio' => $request->bio,
             'name' => $request->name,
             'phone' => $request->phone,
@@ -41,6 +25,10 @@ class UserController extends Controller
 
         if($request->password) {
            $updated_field['password'] = bcrypt($request->password);
+        }
+
+        if($request->avatar) {
+           $updated_field['avatar'] = $request->avatar;
         }
 
         // Update user
