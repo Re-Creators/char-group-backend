@@ -15,10 +15,10 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6'
         ]);
-        
         $user = User::create([
             'email' => $fields['email'],
-            'password' => bcrypt($fields['password']) 
+            'password' => bcrypt($fields['password']),
+            'avatar' => 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.webp'
         ]);
         
         $user->update([
